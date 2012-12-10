@@ -40,7 +40,11 @@ class RscDataExporterSportsAssociation extends AbstractDataExporter {
 	 * Create the export file
 	 */
 	public function createExportFile($objConfig) {
-		return $objConfig->exportFolder . '/2012_08_12.csv';
+		$objFile = $this->createFile($objConfig, date("Y_m_d_h_i_s"), 'csv');
+		$objFile->append('Test');
+		$objFile->close();
+
+		return $objFile->value;
 	}
 }
 
