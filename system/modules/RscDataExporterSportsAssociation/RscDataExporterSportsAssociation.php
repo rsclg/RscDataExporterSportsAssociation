@@ -52,7 +52,6 @@ class RscDataExporterSportsAssociation extends AbstractDataExporter {
 		$members = $this->getMembers($ageGroups);
 		
 		$objFile = $this->createFile($objConfig, "Mitgliederstatistik_LSB_" . date("Y"), 'csv');
-		$objFile->write("");
 		
 		$this->addHeaderData($objFile, $members);
 		
