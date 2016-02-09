@@ -56,18 +56,18 @@ class RscDataExporterSportsAssociation extends AbstractDataExporter {
 		$this->addHeaderData($objFile, $members);
 		
 		$objFile->append("Jahrgangsstatistik");
-		$this->addAssociationStatisticByYear($objFile, $members, array("RSC - Mitglied"), "Gesamt");
-		$this->addAssociationStatisticByYear($objFile, $members, array("Verband - RSVN"), "Radsport");
-		$this->addAssociationStatisticByYear($objFile, $members, array("Verband - TVN"), "Triathlon");
-		$this->addAssociationStatisticByYear($objFile, $members, array("Verband - RSVN", "Verband - TVN"), "Radsport & Triathlon");
+		$this->addAssociationStatisticByYear($objFile, $members, array("RSC: Mitglied"), "Gesamt");
+		$this->addAssociationStatisticByYear($objFile, $members, array("Abteilung: Radsport"), "Radsport");
+		$this->addAssociationStatisticByYear($objFile, $members, array("Abteilung: Triathlon"), "Triathlon");
+		$this->addAssociationStatisticByYear($objFile, $members, array("Abteilung: Radsport", "Abteilung: Triathlon"), "Radsport & Triathlon");
 
 		$this->addPageC($objFile, $members);
 		
 		$objFile->append("Altersgruppenstatistik");
-		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("RSC - Mitglied"), "Gesamt");
-		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("Verband - RSVN"), "Radsport");
-		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("Verband - TVN"), "Triathlon");
-		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("Verband - RSVN", "Verband - TVN"), "Radsport & Triathlon");
+		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("RSC: Mitglied"), "Gesamt");
+		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("Abteilung: Radsport"), "Radsport");
+		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("Abteilung: Triathlon"), "Triathlon");
+		$this->addAssociationStatisticByAgeGroup($objFile, $members, $ageGroups, array("Abteilung: Radsport", "Abteilung: Triathlon"), "Radsport & Triathlon");
 		
 		$this->addFooterData($objFile, $members, $ageGroups);
 
@@ -85,7 +85,7 @@ class RscDataExporterSportsAssociation extends AbstractDataExporter {
 		$members = array();
 		while ($dbResult->next()) {
 			$mgroups = explode(",", $dbResult->mgroups);
-			if (is_numeric($dbResult->dateOfBirth) && in_array("RSC - Mitglied", $mgroups)) {
+			if (is_numeric($dbResult->dateOfBirth) && in_array("RSC: Mitglied", $mgroups)) {
 				$members[date("Ymd", $dbResult->dateOfBirth) . "_" . $dbResult->id] = array(
 					'birthYear'   => date("Y", $dbResult->dateOfBirth),
 					'ageGroup'    => $this->getAgeGroup($dbResult->dateOfBirth, $ageGroups),
